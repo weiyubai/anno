@@ -1,10 +1,10 @@
 NCBI <- function(x) {
-  genes <- read.table("genes.txt",header = T,stringsAsFactors = F)
-  genes <- bitr(genes$symbol, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
   library(RCurl)
   library(stringr)
   library(XML)
   library(clusterProfiler)
+  genes <- read.table("genes.txt",header = T,stringsAsFactors = F)
+  genes <- bitr(genes$symbol, fromType="SYMBOL", toType="ENTREZID", OrgDb="org.Hs.eg.db")
   genes$NCBI_url <- paste("https://www.ncbi.nlm.nih.gov/gene/",genes$ENTREZID,sep="")
   head(genes)
   # Official Full name的xpath：//*[@id="summaryDl"]/dd[2]/text()
